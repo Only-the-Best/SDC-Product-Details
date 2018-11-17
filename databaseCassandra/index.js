@@ -1,4 +1,6 @@
 const ExpressCassandra = require(`express-cassandra`);
+const cassandra = require(`cassandra-driver`);
+const fs = require(`fs`);
 
 const models = ExpressCassandra.createClient({
   clientOptions: {
@@ -16,42 +18,23 @@ const models = ExpressCassandra.createClient({
   }
 });
 
-const product = models.loadSchema("Product", {
+const Product = models.loadSchema("Product", {
   fields: {
     id: "int",
     name: "text",
     rating: "int",
     reviewCount: "int",
     itemNum: "int",
-    price: "int",
+    price: "float",
     mainImage: "text",
-    images: "[]"
+    images: "text"
   },
   key: ["id"]
 });
 
-console.log(models.instance.Product === product);
-
-product.syncDB((err, result) => {
-  if (err) throw err;
+Product.syncDB((err, result) => {
+  if (err) console.log(err);
   console.log("schema has changed", result);
 });
 
-const example = new models.instance.Product({
-  id: 1,
-  name: "James",
-  rating: 5,
-  reviewCount: 5,
-  itemNum: 23453,
-  price: 4.5,
-  mainImage: "test",
-  images: [4, 5, 6]
-});
-
-example.save(err => {
-  if (err) {
-    console.log(err);
-    return;
-  }
-  console.log("It works");
-});
+module.exports = Product;

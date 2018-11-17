@@ -13,6 +13,7 @@ module.exports = {
     "prototypejs": true
   },
   "rules": {
+    "autoFixOnSave ": "on",
     "eslint linebreak-style": ["error", "windows"],
     "max-len": ["warn", 80],
     "prettier/prettier": "error",

@@ -11,7 +11,7 @@
     "build-dev": "webpack --config webpack.dev.js --watch --open",
     "build-prod": "webpack --config webpack.prod.js --open",
     "db:setup": "node database/seed.js",
-    "db:setup2": "node databaseCassandra/seed.js",
+    "db:setup2": "node --max-old-space-size=5000 databaseCassandra/seed.js && node --max-old-space-size=5000 databaseCassandra/seed.js && node --max-old-space-size=5000 databaseCassandra/seed.js && node --max-old-space-size=5000 databaseCassandra/seed.js && node --max-old-space-size=5000 databaseCassandra/seed.js && node --max-old-space-size=5000 databaseCassandra/seed.js && node --max-old-space-size=5000 databaseCassandra/seed.js && node --max-old-space-size=5000 databaseCassandra/seed.js",
     "test": "jest --watch --verbose",
     "stage": "lint-staged"
   },
@@ -75,9 +75,11 @@
     "webpack-merge": "^4.1.4"
   },
   "dependencies": {
+    "Faker": "^0.7.2",
     "axios": "^0.18.0",
     "body-parser": "^1.18.3",
     "cassandra-driver": "^3.5.0",
+    "csv-stringify": "^4.3.1",
     "dse-driver": "^1.2.0",
     "express": "^4.16.4",
     "express-cassandra": "^2.2.3",
