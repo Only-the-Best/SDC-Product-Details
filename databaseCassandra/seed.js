@@ -1,5 +1,6 @@
 // const fs = require(`fs`);
-const fs = require('graceful-fs');
+const fs = require("graceful-fs");
+
 const ExpressCassandra = require(`express-cassandra`);
 const cassandra = require(`cassandra-driver`);
 const Product = require(`./index.js`);
@@ -31,7 +32,6 @@ const faker = require(`faker`);
 //     images: "image"
 //   }
 // );
-
 
 // const writeToFile = function() {
 //   for(var i = 0; i < 1000; i++){
@@ -77,58 +77,57 @@ const faker = require(`faker`);
 const randomNum = () => Math.floor(Math.random() * Math.floor(100));
 
 // const populateImages = index => {
-  const images = [
-    {
-      image: `https://s3-us-west-1.amazonaws.com/hrr34-trailblazer/${50000}-min.jpg`,
-      color: faker.commerce.color()
-    }
-  ];
-  let numOfImages;
+const images = [
+  {
+    image: `https://s3-us-west-1.amazonaws.com/hrr34-trailblazer/${50000}-min.jpg`,
+    color: faker.commerce.color()
+  }
+];
+let numOfImages;
 
-  for (let i = 4; i > 0; i -= 1) {
-    if (50000 % i === 0) {
-      numOfImages = i - 1;
-      break;
-    }
+for (let i = 4; i > 0; i -= 1) {
+  if (50000 % i === 0) {
+    numOfImages = i - 1;
+    break;
   }
-  for (let i = 1; i <= numOfImages; ++i) {
-    images.push({
-      image: `https://s3-us-west-1.amazonaws.com/hrr34-trailblazer/${randomNum()}-min.jpg`,
-      color: faker.commerce.color()
-    });
-  }
-  // return images;
+}
+for (let i = 1; i <= numOfImages; ++i) {
+  images.push({
+    image: `https://s3-us-west-1.amazonaws.com/hrr34-trailblazer/${randomNum()}-min.jpg`,
+    color: faker.commerce.color()
+  });
+}
+// return images;
 // };
 
-const createMockProducts = (num) => {
+const createMockProducts = num => {
   const products = [];
   // for (let i = 1; i <= 1; i++) {
-    products.push({
-      _id: num,
-      name: faker.commerce.productName(),
-      rating: Number(faker.finance.amount(1, 5, 1)),
-      reviewCount: faker.random.number({ min: 20, max: 150 }),
-      itemNum: num,
-      price: faker.commerce.price(50, 500),
-      mainImage: `https://s3-us-west-1.amazonaws.com/hrr34-trailblazer/${num}-min.jpg`,
-      images: images
-    });
+  products.push({
+    _id: num,
+    name: faker.commerce.productName(),
+    rating: Number(faker.finance.amount(1, 5, 1)),
+    reviewCount: faker.random.number({ min: 20, max: 150 }),
+    itemNum: num,
+    price: faker.commerce.price(50, 500),
+    mainImage: `https://s3-us-west-1.amazonaws.com/hrr34-trailblazer/${num}-min.jpg`,
+    images
+  });
   // }
   return products;
 };
 
 const writeToFile = function() {
-  for(let i = 0; i < 100000; ++i) {
-    stringify( createMockProducts(i), (err, output) => {
-        fs.appendFile(`test.csv`, output, err => {
-          // console.time('start');
-          if (err) throw err
-          // console.log("This file has been saved!");
-          // console.timeEnd('start');
-        }
-      )
-    })
+  for (let i = 0; i < 100000; ++i) {
+    stringify(createMockProducts(i), (err, output) => {
+      fs.appendFile(`test.csv`, output, err => {
+        // console.time('start');
+        if (err) throw err;
+        // console.log("This file has been saved!");
+        // console.timeEnd('start');
+      });
+    });
   }
-}
+};
 
 writeToFile();
