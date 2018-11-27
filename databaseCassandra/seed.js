@@ -100,31 +100,33 @@ for (let i = 1; i <= 4; ++i) {
 // return images;
 // };
 
-const createMockProducts = num => {
+// const createMockProducts = num => {
   const products = [];
   // for (let i = 1; i <= 1; i++) {
+for (let i = 0; i < 1000000; ++i) {
   products.push({
-    _id: num,
+    _id: i,
     name: faker.commerce.productName(),
     rating: Number(faker.finance.amount(1, 5, 1)),
     reviewCount: faker.random.number({ min: 20, max: 150 }),
-    itemNum: num,
+    itemNum: i,
     price: faker.commerce.price(50, 500),
-    mainImage: `https://s3-us-west-1.amazonaws.com/hrr34-trailblazer/${num}-min.jpg`,
+    mainImage: `https://s3-us-west-1.amazonaws.com/hrr34-trailblazer/${i}-min.jpg`,
     images
   });
+}
   // }
-  return products;
-};
+  // return products;
+// };
 
-const writeToFile = function() {
-  for (let i = 0; i < 100000; ++i) {
-    stringify(createMockProducts(i), (err, output) => {
+// const writeToFile = function() {
+  // for (let i = 0; i < 100000; ++i) {
+    stringify(products, (err, output) => {
       fs.appendFile(`test.csv`, output, err => {
         if (err) throw err;
       });
     });
-  }
-};
+  // }
+// };
 
-writeToFile();
+// writeToFile();
