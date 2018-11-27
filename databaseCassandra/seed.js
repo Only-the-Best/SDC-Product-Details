@@ -85,13 +85,13 @@ const images = [
 ];
 let numOfImages;
 
-for (let i = 4; i > 0; i -= 1) {
-  if (50000 % i === 0) {
-    numOfImages = i - 1;
-    break;
-  }
-}
-for (let i = 1; i <= numOfImages; ++i) {
+// for (let i = 4; i > 0; i -= 1) {
+//   if (50000 % i === 0) {
+//     numOfImages = i - 1;
+//     break;
+//   }
+// }
+for (let i = 1; i <= 4; ++i) {
   images.push({
     image: `https://s3-us-west-1.amazonaws.com/hrr34-trailblazer/${randomNum()}-min.jpg`,
     color: faker.commerce.color()
@@ -121,10 +121,7 @@ const writeToFile = function() {
   for (let i = 0; i < 100000; ++i) {
     stringify(createMockProducts(i), (err, output) => {
       fs.appendFile(`test.csv`, output, err => {
-        // console.time('start');
         if (err) throw err;
-        // console.log("This file has been saved!");
-        // console.timeEnd('start');
       });
     });
   }
