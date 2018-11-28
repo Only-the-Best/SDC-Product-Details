@@ -11,7 +11,7 @@
     "build-dev": "webpack --config webpack.dev.js --watch --open",
     "build-prod": "webpack --config webpack.prod.js --open",
     "db:setup": "node database/seed.js",
-    "db:setup2": "node --max-old-space-size=5000 databaseCassandra/seed.js & node --max-old-space-size=5000 databaseCassandra/seed.js & node --max-old-space-size=5000 databaseCassandra/seed.js & node --max-old-space-size=5000 databaseCassandra/seed.js & node --max-old-space-size=5000 databaseCassandra/seed.js & node --max-old-space-size=5000 databaseCassandra/seed.js & node --max-old-space-size=5000 databaseCassandra/seed.js & node --max-old-space-size=5000 databaseCassandra/seed.js & node --max-old-space-size=5000 databaseCassandra/seed.js & node --max-old-space-size=5000 databaseCassandra/seed.js",
+    "db:setup2": "node --max-old-space-size=5000 database-Cassandra/seed.js & node --max-old-space-size=5000 database-Cassandra/seed.js & node --max-old-space-size=5000 database-Cassandra/seed.js & node --max-old-space-size=5000 database-Cassandra/seed.js & node --max-old-space-size=5000 database-Cassandra/seed.js & node --max-old-space-size=5000 database-Cassandra/seed.js & node --max-old-space-size=5000 database-Cassandra/seed.js & node --max-old-space-size=5000 database-Cassandra/seed.js & node --max-old-space-size=5000 database-Cassandra/seed.js & node --max-old-space-size=5000 database-Cassandra/seed.js",
     "test": "jest --watch --verbose",
     "stage": "lint-staged"
   },
@@ -85,6 +85,7 @@
     "express-cassandra": "^2.2.3",
     "mongodb": "^3.1.8",
     "mongoose": "^5.3.6",
+    "newrelic": "^4.11.0",
     "pg": "^7.6.1",
     "react": "^16.6.0",
     "react-dom": "^16.6.0",
